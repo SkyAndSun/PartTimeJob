@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.qsj.ptj.dao.UserInfoDao" >
+  <resultMap id="BaseResultMap" type="cn.qsj.ptj.entity.UserInfo" >
+    <result column="user_id" property="userId" jdbcType="NUMERIC" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <select id="findByUserId" resultMap="BaseResultMap">
+  	select * from user_info where user_id = #{userId}
+  </select>
+  
+  <select id="findByUserName" resultMap="BaseResultMap">
+  	select * from user_info where user_name = #{userName}
+  </select>
+
+  <!--新增用户信息-->
+  <insert id="addUserInfo" parameterType="cn.qsj.ptj.entity.UserInfo">
+    INSERT INTO  user_info
+    ( 
+    	user_name,code,flag
+    )
+    values
+    (
+        #{userName}.#{code},0
+    )
+  </insert>
+   
+ </mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.qsj.ptj.dao.CollectionDao" >
+  <resultMap id="BaseResultMap" type="cn.qsj.ptj.entity.Collection" >
+  	<result column="id" property="id" jdbcType="NUMERIC" />
+    <result column="user_id" property="userId" jdbcType="NUMERIC" />
+    <result column="job_id" property="jobId" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <select id="findByUserId" resultMap="BaseResultMap">
+  	select * from collections where user_id = #{userId}
+  </select>
+
+  <!--新增收藏信息-->
+  <insert id="addCollection" parameterType="cn.qsj.ptj.entity.Collection">
+    INSERT INTO  collections
+    ( 
+    	user_id,
+    	job_id
+    )
+    values
+    (
+        #{userId},
+         #{jobId}
+    )
+  </insert>
+  
+  <!-- 删除 -->
+  <delete id="deleteCollection">
+  	delete from collections where job_Id = #{jobId} and user_id = #{userId}
+  </delete>
+   
+ </mapper>
